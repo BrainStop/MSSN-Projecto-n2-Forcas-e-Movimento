@@ -1,30 +1,35 @@
-class Mover {
-  PVector loc;
-  PVector vel;
-  PVector acc;
+class Mover
+{
+  PVector loc, vel, acc;
   color c;
   float mass;
-  int size;
-
-  Mover(PVector loc, PVector vel, float mass, color c) {
-    this.loc = loc;
-    this.vel = vel;
+  
+  Mover(PVector loc, PVector vel, float mass, color c)
+  {
+    this.loc = loc.copy();
+    this.vel = vel.copy();
     this.mass = mass;
     this.c = c;
+    acc = new PVector();
   }
- 
-  void applyForce(PVector f) {
-    acc = f.div(mass);
-    vel.add(acc);
+  
+  void applyForce(PVector f)
+  {
+    acc.add(PVector.div(f,mass));
   }
-  void move() {
-    System.out.println(loc);
-    loc.add(vel);
-        System.out.println(loc);
-
+  
+  void move(float dt)
+  {
+    vel.add(PVector.mult(acc,dt));
+    PVector vdt = PVector.mult(vel,dt);
+    loc.add(vdt);
+    acc.mult(0);
   }
-  void display() {
-    //TODO
+  
+  void display()
+  {
+    fill(c);
+    float r = pow(mass,2/3.);
+    ellipse(loc.x, loc.y, r, r);
   }
- 
 }

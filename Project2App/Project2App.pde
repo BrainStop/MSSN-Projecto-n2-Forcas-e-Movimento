@@ -177,9 +177,11 @@ void keyPressed() {
     if (key == CODED) {
 
       if (keyCode == UP) {
-        world.spaceship.move();
+        world.spaceship.move(1);
       }
       if (keyCode == DOWN) {
+                world.spaceship.move(-1);
+
       }
     } else {
     }
