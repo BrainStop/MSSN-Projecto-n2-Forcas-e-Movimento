@@ -1,24 +1,36 @@
-class Bullet extends Mover {
-
-
-  Bullet(PVector loc, PVector vel) {
-
-    super(loc, vel, 0, color(0, 255, 0));
+class Bullet extends Mover
+{
+  Bullet(PVector loc, PVector vel)
+  {
+    super(loc, vel, 1., color(0));
   }
-
-  public boolean isOut() {
-
-    if (this.loc.x > width || this.loc.y > height  || this.loc.x < 0 || this.loc.y < 0 ) {
-
-      return true;
+  
+  void run(float dt, Fluid fluid)
+  {
+    if (fluid.isInside(this)) {
+      PVector f = fluid.dragForce(this);
+      applyForce(f);
     }
-
+    move(dt);
+    display();
+  }
+  
+  boolean isOut()
+  {
+    if (loc.x < 0 || loc.x > width || loc.y < 0 || loc.y > height) return true;
     return false;
   }
-
-  void display() {
-    fill(this.c);
-    this.vel.add(this.vel);
-    rect(loc.x+this.vel.x, loc.y+this.vel.y, 5, 25);
+  
+  boolean hit(Mover m)
+  {
+    float d = PVector.dist(loc, m.loc);
+    if (d < 5) return true;
+    return false;
+  }
+  
+  void display()
+  {
+    fill(0);
+    ellipse(loc.x,loc.y,5,5);
   }
 }
