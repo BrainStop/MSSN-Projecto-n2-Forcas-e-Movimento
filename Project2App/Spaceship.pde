@@ -1,4 +1,4 @@
-class Spaceship extends Mover{
+class Spaceship extends Mover {
 
 
   PImage ship;
@@ -6,18 +6,16 @@ class Spaceship extends Mover{
 
   Spaceship(PVector loc, int spaceshipNumber) {
 
-      super(loc);  
+    super(loc, new PVector(0, -5), 10, color(0, 0, 0));
+    this.bullets = new ArrayList<Bullet>();
     if (spaceshipNumber ==1) {
-          this.ship = loadImage("ship1.png");
-
+      this.ship = loadImage("ship1.png");
     }
     if (spaceshipNumber ==2) {
-          this.ship = loadImage("ship2.png");
-
+      this.ship = loadImage("ship2.png");
     }
     if (spaceshipNumber ==3) {
-          this.ship = loadImage("ship3.png");
-
+      this.ship = loadImage("ship3.png");
     }
   }
 
@@ -30,8 +28,11 @@ class Spaceship extends Mover{
   }
 
   void display() {
-    
-    image(ship, loc.x, loc.y,50, 75);
 
+    for(Bullet b: bullets){
+      b.display();
+      
+    }
+    image(ship, loc.x, loc.y, 50, 75);
   }
 }
