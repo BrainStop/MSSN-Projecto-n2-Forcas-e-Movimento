@@ -120,6 +120,9 @@ void drawMenu() {
 }
 
 void drawJogo() {
+  background(0);
+  world.sun.display();
+  world.spaceship.display();
 }
 
 void draw() {
@@ -148,12 +151,11 @@ void update() {
 void mousePressed() {
 
 
-  
-  if (estado == menu) {
-    
-    if(mouseOverShip() != 0){
-          selectedShip = mouseOverShip();
 
+  if (estado == menu) {
+
+    if (mouseOverShip() != 0) {
+      selectedShip = mouseOverShip();
     }
     if ( isOverNewGame()) {
       if (selectedShip!=0) {
@@ -165,7 +167,27 @@ void mousePressed() {
       }
     }
   } else {
-          System.out.println("jogo");
+    System.out.println("jogo");
+  }
+}
 
+
+void keyPressed() {
+  if (estado == jogo) {
+    if (key == CODED) {
+
+      if (keyCode == UP) {
+        world.spaceship.move();
+      }
+      if (keyCode == DOWN) {
+      }
+    } else {
+    }
+    if ( key == ' ') {
+
+      System.out.println("laser");
+      this.world.spaceship.bullets.add(new Bullet(new PVector(this.world.spaceship.loc.x, this.world.spaceship.loc.y)
+      , new PVector(this.world.spaceship.vel.x, this.world.spaceship.vel.y)));
+    }
   }
 }

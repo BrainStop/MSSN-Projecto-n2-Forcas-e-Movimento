@@ -12,18 +12,19 @@ class Mover {
     this.mass = mass;
     this.c = c;
   }
-  /*
+ 
   void applyForce(PVector f) {
     acc = f.div(mass);
     vel.add(acc);
   }
-
   void move() {
+    System.out.println(loc);
     loc.add(vel);
-  }
+        System.out.println(loc);
 
+  }
   void display() {
     //TODO
   }
-  */
+ 
 }

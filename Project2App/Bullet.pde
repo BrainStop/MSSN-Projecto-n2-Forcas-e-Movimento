@@ -1,19 +1,24 @@
 class Bullet extends Mover {
 
+
   Bullet(PVector loc, PVector vel) {
-    //TODO estes parametros de massa e cor n são os finais
-    super(loc, vel, 20, color(255));
+
+    super(loc, vel, 0, color(0, 255, 0));
   }
 
-  /*  
-   TODO falta o Fluid para isto funcionar
-   void run(float dt, Fluid fluid) {
-   TODO
-   }
-   boolean isOut() { 
-   }
-   
-  boolean hit(Mover m) {
+  public boolean isOut() {
+
+    if (this.loc.x > width || this.loc.y > height  || this.loc.x < 0 || this.loc.y < 0 ) {
+
+      return true;
+    }
+
+    return false;
   }
-  */
+
+  void display() {
+    fill(this.c);
+    this.vel.add(this.vel);
+    rect(loc.x+this.vel.x, loc.y+this.vel.y, 5, 25);
+  }
 }
