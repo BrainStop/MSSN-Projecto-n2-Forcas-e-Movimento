@@ -36,8 +36,6 @@ void setup() {
 }
 
 
-void menu() {
-}
 
 public int mouseOverShip() {
 
@@ -119,11 +117,6 @@ void drawMenu() {
   }
 }
 
-void drawJogo() {
-  background(0);
-  world.sun.display();
-  world.spaceship.display();
-}
 
 void draw() {
 
@@ -132,7 +125,7 @@ void draw() {
     drawMenu();
   }
   if (estado == jogo) {
-    drawJogo();
+    world.run();
   }
 }
 
@@ -166,30 +159,5 @@ void mousePressed() {
         world.run();
       }
     }
-  } else {
-    System.out.println("jogo");
-  }
-}
-
-
-void keyPressed() {
-  if (estado == jogo) {
-    if (key == CODED) {
-
-      if (keyCode == UP) {
-        world.spaceship.move(1);
-      }
-      if (keyCode == DOWN) {
-                world.spaceship.move(-1);
-
-      }
-    } else {
-    }
-    if ( key == ' ') {
-
-      System.out.println("laser");
-      this.world.spaceship.bullets.add(new Bullet(new PVector(this.world.spaceship.loc.x, this.world.spaceship.loc.y)
-      , new PVector(this.world.spaceship.vel.x, this.world.spaceship.vel.y)));
-    }
-  }
+  } 
 }

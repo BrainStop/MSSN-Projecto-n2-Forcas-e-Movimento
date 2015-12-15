@@ -2,7 +2,7 @@ class Bullet extends Mover
 {
   Bullet(PVector loc, PVector vel)
   {
-    super(loc, vel, 1., color(0));
+    super(loc, vel, 1., color(0,0,255));
   }
   
   void run(float dt, Fluid fluid)
@@ -30,7 +30,7 @@ class Bullet extends Mover
   
   void display()
   {
-    fill(0);
-    ellipse(loc.x,loc.y,5,5);
+    fill(0,0,255);
+    rect(loc.x,loc.y,5,10);
   }
 }
